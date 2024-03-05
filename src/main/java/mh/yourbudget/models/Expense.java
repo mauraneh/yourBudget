@@ -1,11 +1,11 @@
-package models;
+package mh.yourbudget.models;
 
 import java.time.LocalDate;
 
 public class Expense {
     private LocalDate date;
     private float amount;
-    private float homeRent;
+    private float houseRent;
     private float entertainment;
     private float food;
     private float transport;
@@ -13,15 +13,20 @@ public class Expense {
     private float taxes;
     private float others;
 
-    public Expense(LocalDate date, float amount, float homeRent, float food, float transport, float travel, float taxes, float others) {
-        this.date = date;
-        this.amount = amount;
-        this.homeRent = homeRent;
+    public Expense(LocalDate date, float houseRent, float entertainment, float food, float transport, float travel, float taxes, float others) {
+        this.date = date != null ? date : LocalDate.now();
+        this.houseRent = houseRent;
+        this.entertainment = entertainment;
         this.food = food;
         this.transport = transport;
         this.travel = travel;
         this.taxes = taxes;
         this.others = others;
+        calculateTotal();
+    }
+
+    public Expense() {
+        this(LocalDate.now(), 0, 0, 0, 0, 0, 0, 0);
     }
 
     public LocalDate getDate() {
@@ -30,18 +35,17 @@ public class Expense {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
     public void setAmount(float amount) {
         this.amount = amount;
+        calculateTotal();
     }
-    public float getHomeRent() {
-        return homeRent;
+    public float getHouseRent() {
+        return houseRent;
     }
-    public void setHomeRent(float homeRent) {
-        this.homeRent = homeRent;
-    }
+    public void setHouseRent(float houseRent) { this.houseRent = houseRent; }
     public float getEntertainment() {
         return entertainment;
     }
@@ -77,5 +81,24 @@ public class Expense {
     }
     public void setOthers(float others) {
         this.others = others;
+    }
+
+    public void calculateTotal() {
+        this.amount = houseRent + food + entertainment + transport + travel + taxes + others;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "date=" + date +
+                ", total=" + amount +
+                ", housing=" + houseRent +
+                ", food=" + food +
+                ", goingOut=" + entertainment +
+                ", transportation=" + transport +
+                ", travel=" + travel +
+                ", tax=" + taxes +
+                ", other=" + others +
+                '}';
     }
 }

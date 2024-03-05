@@ -5,10 +5,69 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.BudgetController"
-            prefHeight="400.0" prefWidth="600.0">
-
+            fx:controller="mh.yourbudget.controllers.BudgetController"
+            stylesheets="@css/style.css">
+    <VBox alignment="CENTER" spacing="20" styleClass="glass-pane" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Label id="tableTitle" text="Budget Overview"/>
+        <HBox alignment="CENTER">
+            <TableView fx:id="budgetTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="Date">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="date"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Amount">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="amount"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="House Rent">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="houseRent"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Entertainment">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="entertainment"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Food">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="food"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Transport">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="transport"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Travel">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="travel"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Taxes">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="taxes"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Other">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="others"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </HBox>
+        <HBox alignment="CENTER" spacing="10">
+            <Button styleClass="btnApp" text="Add expense" onAction="#addExpense"/>
+            <Button styleClass="btnApp" fx:id="deleteExpenseButton" text="Delete expense" onAction="#deleteExpense" />
+        </HBox>
+    </VBox>
 </AnchorPane>

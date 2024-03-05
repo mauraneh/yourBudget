@@ -1,31 +1,25 @@
-package com.example.financemanager.db;
+package mh.yourbudget.bdd;
 
-import org.slf4j.LoggerFactory;
 import org.sqlite.JDBC;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mh.yourbudget.models.Expense;
 
-import static com.example.financemanager.FinanceTrackerApplication.findAndCreateOSFolder;
+//import static mh.yourbudget.DashboardApplication.findAndCreateOSFolder;
 
 public class Database {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(Database.class);
-
-    /**
-     * Location of database
-     */
-    private static final String location = "database.db";
+   // private static final org.slf4j.Logger log = LoggerFactory.getLogger(Database.class);
+    private static final String location = "./database.db";
 
     public static boolean isOK() {
         if (!checkDrivers()) return false; //driver errors
-
         if (!checkConnection()) return false; //can't connect to db
-
         return createTableIfNotExists(); //tables didn't exist
     }
 
@@ -35,7 +29,6 @@ public class Database {
             DriverManager.registerDriver(new JDBC());
             return true;
         } catch (ClassNotFoundException | SQLException classNotFoundException) {
-            log.error("Could not start SQLite Drivers", classNotFoundException);
             return false;
         }
     }
@@ -69,20 +62,17 @@ public class Database {
             statement.executeUpdate();
             return true;
         } catch (SQLException exception) {
-            log.error("Could not create tables in database", exception);
             return false;
         }
     }
 
     protected static Connection connect() {
-        String osFolder = findAndCreateOSFolder();
-
+        //String osFolder = findAndCreateOSFolder();
         String dbPrefix = "jdbc:sqlite:";
         Connection connection;
         try {
-            connection = DriverManager.getConnection(dbPrefix + osFolder + "/" + location);
+            connection = DriverManager.getConnection(dbPrefix  + location);
         } catch (SQLException exception) {
-            log.error("Could not connect to SQLite DB at " + osFolder + "/" + location, exception);
             return null;
         }
         return connection;

@@ -1,0 +1,132 @@
+
+/* Base application settings */
+.root {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-base: #eceff1;
+    -fx-background-color: #e0e0e0;
+    -fx-background-image: url('/mh/yourbudget/assets/images/background.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* General glassmorphic container style */
+.glass-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 20px;
+    -fx-border-color: rgba(240, 240, 240, 0.9);
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 10);
+}
+
+/* Enhanced title style with glassmorphic effect */
+#titleApp {
+    -fx-text-fill: #455a64;
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-radius: 20px;
+    -fx-padding: 15px 30px;
+    -fx-border-radius: 20px;
+    -fx-border-color: rgba(230, 230, 230, 0.8);
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 15, 0.2, 0, 6);
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#topContainer, #centerContainer {
+    -fx-padding: 10 0 10 0; /* Haut, Droite, Bas, Gauche */
+}
+
+/* Style for the tab and tab pane */
+.tab-pane {
+    -fx-padding: 30px;
+    -fx-tab-max-height: 30px;
+    -fx-tab-min-width: 120px;
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+.tab {
+    -fx-padding: 10px 20px;
+    -fx-border-color: #546E7A;
+    -fx-border-width: 2px 2px 0 2px;
+    -fx-border-radius: 5px 5px 0 0;
+    -fx-font-size: 16px;
+    fx-background-color: transparent;
+}
+.tab:selected {
+    -fx-background-color: #c0a7eb;
+}
+.tab-pane .tab-header-area .headers-region .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-background-color: transparent;
+}
+
+/* Style for the tab content */
+.tab-content-area {
+    -fx-background-color: #ECEFF1;
+    -fx-padding: 20px;
+    -fx-border-color: #546E7A;
+    -fx-border-width: 2px;
+}
+
+/* Table view */
+.table-view {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 20px;
+    -fx-border-color: rgba(230, 230, 230, 0.9);
+    -fx-border-width: 1px;
+    -fx-font-size: 10px;
+}
+.table-row-cell {
+    -fx-background-color: transparent;
+}
+.table-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-border-color: transparent;
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: rgba(255, 255, 255, 0.65);
+    -fx-text-fill: #546e7a;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: rgba(230, 230, 230, 0.9);
+    -fx-border-width: 1px;
+}
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Label styles */
+.label {
+    -fx-text-fill: #546e7a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+/* Chart styling */
+.bar-chart, .axis {
+    -fx-background-color: transparent;
+}
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* Scroll bars */
+.scroll-bar, .scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.75);
+    -fx-background-insets: 2;
+    -fx-background-radius: 5px;
+}

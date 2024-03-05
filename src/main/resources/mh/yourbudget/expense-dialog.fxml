@@ -1,14 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.DatePicker?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            stylesheets="@css/style.css"
+            xmlns:fx="http://javafx.com/fxml" prefWidth="500">
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+    <content>
+        <GridPane hgap="5" vgap="5">
+            <Label text="Date :" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <DatePicker fx:id="datePicker"/>
+            <Label text="House Rent :" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="houseRentField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+            <Label text="Food :" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="foodField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-</AnchorPane>
+            <Label text="Entertainment :" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="entertainmentField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Label text="Transport :" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="transportField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <Label text="Travel :" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="travelField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+            <Label text="Taxes :" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <TextField fx:id="taxesField" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+            <Label text="Other :" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+            <TextField fx:id="othersField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+        </GridPane>
+    </content>
+
+    <ButtonType fx:id="createButton" text="Add" buttonData="OK_DONE"/>
+    <ButtonType text="Cancel" buttonData="CANCEL_CLOSE"/>
+</DialogPane>

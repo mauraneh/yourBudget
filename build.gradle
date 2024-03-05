@@ -17,16 +17,13 @@ ext {
   junitVersion = '5.10.0'
 }
 
-sourceCompatibility = '21'
-targetCompatibility = '21'
-
 tasks.withType(JavaCompile) {
   options.encoding = 'UTF-8'
 }
 
 application {
   mainModule = 'mh.yourbudget'
-  mainClass = 'mh.yourbudget.HelloApplication'
+  mainClass = 'mh.yourbudget.DashboardApplication'
 }
 
 javafx {
@@ -35,9 +32,14 @@ javafx {
 }
 
 dependencies {
-
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  implementation ('org.xerial:sqlite-jdbc:3.44.1.0')
+  // SLF4J API
+  implementation 'org.slf4j:slf4j-api:1.7.36'
+  // Logback Classic Implementation
+  implementation 'ch.qos.logback:logback-classic:1.4.14'
+
 }
 
 test {
@@ -47,10 +49,36 @@ jlink {
   imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
   options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
   launcher {
-    name = 'app'
+    name = 'mh.yourBudget'
   }
 }
 
 jlinkZip {
   group = 'distribution'
 }
+
+task runJpackage(type: Exec) {
+  doFirst {
+    // Déterminer le système d'exploitation et configurer les options de jpackage en conséquence
+    def os = org.gradle.internal.os.OperatingSystem.current()
+    def jpackageCommand = "${System.getProperty('java.home')}/bin/jpackage"
+
+    // Ajuster ici avec le nom de votre JAR et la classe principale
+    def appName = "yourBudget"
+    def mainJar = "${appName}.jar"
+    def mainClass = "mh.yourbudget.DashboardApplication"
+
+    def baseOptions = ["--input", "${buildDir}/image", "--name", appName, "--main-jar", mainJar, "--main-class", mainClass, "--type", "image"]
+
+    if (os.isMacOsX()) {
+      commandLine jpackageCommand, baseOptions + ["--icon", "src/main/resources/mh/yourbudget/assets/images/icon.icns", "--type", "dmg"]
+    } else if (os.isWindows()) {
+      commandLine jpackageCommand, baseOptions + ["--icon", "src/main/resources/mh/yourbudget/assets/images/icon.ico", "--type", "msi"]
+    } else if (os.isLinux()) {
+      commandLine jpackageCommand, baseOptions + ["--icon", "src/main/resources/mh/yourbudget/assets/images/icon.png", "--type", "deb"]
+    } else {
+      throw new GradleException("Unsupported OS for jpackage task")
+    }
+  }
+}
+
